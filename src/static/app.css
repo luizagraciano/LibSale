@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    background-color: #F2EAE4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+input{
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 3px;
+    margin-bottom: 15px;
+    font-size: 12px;
+}
+
+button{
+    background-color:#736F36;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 3px;
+    margin-bottom: 15px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 16px;
+}
+
+#register-form-container, #login-form-container{
+    width: 400px;
+    height: 600px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#D9CBBF;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, .2);
+    border-radius: 20px;
+}
+
+#login-form-container{
+    width: 400px;
+    height: 400px;
+}
+
+.req-sign{
+    font-size: 16px;
+    color: red;
+}
+
+.dashboard-container{
+    height: 700px;
+    width: 1000px;
+    background-color: #ffffff;
+}

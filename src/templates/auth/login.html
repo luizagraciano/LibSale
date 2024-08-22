@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Fazer Login{% endblock %}
+{% block content %}
+    <div id="login-form-container">
+        <form action="" method="POST" id="login-form">
+            <h2>Entre na sua conta</h2><br>
+            <label for="user-id">CPF</label><span class="req-sign"> *</span><br>
+            <input type="number" name = "user-id" id="user-id" required><br>
+
+            <label for="user-password">Senha</label><span class="req-sign"> *</span><br>
+            <input type="text" name = "user-password" id="user-password" required><br>
+
+            <button type="submit" id="login-bttn">Entrar</button>
+        </form>
+    </div>
+{% endblock %}

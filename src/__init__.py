@@ -1,7 +1,5 @@
 import os
-
 from flask import Flask
-
 
 def create_app(test_config=None):
     # create and configure the app
@@ -24,12 +22,11 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
-
     from .data import db
     db.init_app(app)
+
+    from .views import auth, dashboard
+    app.register_blueprint(auth.bp)
+    app.register_blueprint(dashboard.bp)
 
     return app

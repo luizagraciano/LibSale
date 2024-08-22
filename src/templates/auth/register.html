@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Crie sua conta{% endblock %}
+{% block content %}
+<div id="register-form-container">
+    <form method="POST" id="register-form">
+        <h2>Crie sua conta</h2><br>
+        <label for="user-name">Nome</label><span class="req-sign"> *</span><br>
+        <input type="text" name = "user-name" id="user-name" required><br>
+        
+        <label for="user-id">CPF</label><span class="req-sign"> *</span><br>
+        <input type="number" name = "user-id" id="user-id" required><br>
+
+        <label for="user-birthday">Data de Nascimento</label><span class="req-sign"> *</span><br>
+        <input type="date" name = "user-birthday" id="user-birthday" required><br>
+        
+        <label for="user-phone-number">Telefone</label><span class="req-sign"> *</span><br>
+        <input type="number" name = "user-phone-number" id="user-phone-number" required><br>
+        
+        <label for="user-email">E-mail</label><span class="req-sign"> *</span><br>
+        <input type="email" name = "user-email" id="user-email" required><br>
+        
+        <label for="user-password">Senha</label><span class="req-sign"> *</span><br>
+        <input type="text" name = "user-password" id="user-password" required><br>
+
+        <button type="submit" value="register" id="register-bttn">Cadastrar</button>
+    </form>
+</div>
+{% endblock %}
