@@ -27,9 +27,11 @@ def register():
                 )
                 db.commit()
             except db.IntegrityError:
-                error = f"Usuário {user_id} já está cadastrado."
+                error = f"Usuário já cadastrado."
             else:
                 return redirect(url_for("auth.login"))
+
+        flash(error)
 
     return render_template('auth/register.html')
 
@@ -52,7 +54,14 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['id']
+            session['user_name'] = user['name']
             return redirect(url_for('dashboard.welcome'))
 
         flash(error)
+        
     return render_template('auth/login.html')
+
+@bp.route('/logout')
+def logout():
+        session.clear()
+        return redirect(url_for('auth.login'))

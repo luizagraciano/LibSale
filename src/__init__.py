@@ -25,8 +25,9 @@ def create_app(test_config=None):
     from .data import db
     db.init_app(app)
 
-    from .views import auth, dashboard
+    from .views import auth, dashboard, sale
     app.register_blueprint(auth.bp)
     app.register_blueprint(dashboard.bp)
+    app.register_blueprint(sale.bp)
 
     return app

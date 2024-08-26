@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS order_item;
 DROP TABLE IF EXISTS costumer;
 
 CREATE TABLE seller (
-    id INTEGER PRIMARY KEY,
+    id VARCHAR PRIMARY KEY,
     name TEXT NOT NULL,
     birthday DATE NOT NULL,
     phone_number INTEGER NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE order_item (
 );
 
 CREATE TABLE costumer (
-    id INTEGER PRIMARY KEY,
+    id VARCHAR PRIMARY KEY,
     name TEXT NOT NULL,
     birthday DATE NOT NULL,
     phone_number INTEGER NOT NULL,

@@ -4,50 +4,129 @@
     box-sizing: border-box;
 }
 
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.m-48{
+    font-size: 48px;
+}
+
+.m-36{
+    font-size: 36px;
+}
+
+.flex{
+    display: flex;
+}
+
+.flex-1{
+    flex: 1;
+}
+
+.flex-2{
+    flex: 2;
+}
+
+.column{
+    flex-direction: column
+}
+
+.flash {
+    margin: 1em 0;
+    padding: 1em;
+    background: #cae6f6;
+    border: 1px solid #377ba8;
+}
+
 body{
     min-height: 100vh;
-    background-color: #F2EAE4;
+    background-color: #DFEBF2;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: "Poppins", sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
 }
 
 input{
-    border: none;
-    border-radius: 5px;
+    border-color: #4A5934;
+    border-width: 0.5px;
+    border-radius: 15px;
+    height: 30px;
+    width: 250px;
     padding: 5px;
-    margin-top: 3px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+}
+
+.dashboard-search-input{
+    width: 400px;
+}
+
+label{
     font-size: 12px;
 }
 
 button{
-    background-color:#736F36;
+    background-color:#4A5934;
     color: #ffffff;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
+    width: 250px;
     padding: 10px;
-    margin-top: 3px;
-    margin-bottom: 15px;
-    font-family: "Poppins", sans-serif;
+    margin-top: 10px;
+    margin-bottom: 20px;
     font-weight: 600;
     font-style: normal;
-    font-size: 16px;
+    font-size: 14px;
 }
 
-#register-form-container, #login-form-container{
-    width: 400px;
-    height: 600px;
+.search-button{
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+a:link {
+    color: #8C5F37;
+}
+
+a:visited {
+    color: #8C5F37;
+}
+
+a:hover {
+    color: #99B1BF;
+}
+
+a:active {
+    color: #99B1BF;
+}
+
+.container{
+    width: 350px;
+    height: 650px;
+    margin: auto;
     padding: 20px;
     display: flex;
+    align-self: center;
     align-items: center;
     justify-content: center;
-    background-color:#D9CBBF;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, .2);
+    background-color:#ffffff;
     border-radius: 20px;
+    font-size: 12px;
+}
+
+.box-shadow{
+    box-shadow: 0 5px 30px rgba(0, 0, 0, .2);
+}
+
+.border{
+    border: 2px solid #3C4022;
 }
 
 #login-form-container{
@@ -60,8 +139,128 @@ button{
     color: red;
 }
 
+.title{
+    margin-bottom: 20px;
+}
+
+#login-container{
+    height: 400px;
+}
+
 .dashboard-container{
-    height: 700px;
-    width: 1000px;
+    height: 600px;
+    width: 900px;
+    padding: 1em;
+    
+    display: flex;
+    gap: 1em;
+}
+
+.dash-radius{
+    border-radius: 2em;
+}
+
+.dashboard-col-left{
+    gap: 1em;
+}
+
+.dashboard-col-right{
+    gap: 1em;
+}
+
+.row{
+    flex: 1;
     background-color: #ffffff;
+    
+}
+
+.row1{
+    flex: 0.75;
+    align-items: center;
+    justify-content: left;
+}
+
+.row2{
+    flex: 1.25;
+    gap: 1em;
+    background: none;
+}
+
+.row5{
+    flex: 3.35;
+}
+
+.row6{
+    background-color: #8FADBF;
+}
+
+.row-col{
+    flex: 1;
+    background-color: #ffffff;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: 12px;
+}
+
+.card-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+#user-greeting{
+    flex: 1;
+    margin-left: 20px;
+    justify-content: left;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#logout{
+    flex: 1;
+    margin-right: 20px;
+    justify-content: right;
+    text-align: right;
+}
+
+#abrir-caixa{
+    background-color: #3C4022;
+    color: #ffffff;
+}
+
+#nova-venda{
+    background-color: #8C5332;
+    color: #ffffff;
+}
+
+#fechar-caixa{
+    background-color: #402A1E;
+    color: #ffffff;
+}
+
+.dashboard-stats, .dashboard-search{
+    margin: 24px;
+    justify-content: left;
+    text-align: left;
+    gap: 12px;
+}
+
+.dashboard-history{
+    margin: 24px;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+}
+
+#history{
+    color: #ffffff;
+}
+
+.date{
+    font-size: 20px;
+    font-weight: 800;
+    color: #8C5332;
 }

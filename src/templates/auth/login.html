@@ -1,16 +1,41 @@
 {% extends 'base.html' %}
 {% block title %}Fazer Login{% endblock %}
 {% block content %}
-    <div id="login-form-container">
-        <form action="" method="POST" id="login-form">
-            <h2>Entre na sua conta</h2><br>
-            <label for="user-id">CPF</label><span class="req-sign"> *</span><br>
-            <input type="number" name = "user-id" id="user-id" required><br>
-
-            <label for="user-password">Senha</label><span class="req-sign"> *</span><br>
-            <input type="text" name = "user-password" id="user-password" required><br>
-
-            <button type="submit" id="login-bttn">Entrar</button>
+    <div class="container column box-shadow" id="login-container">
+        <div class="title">
+            <h1>Bem-vindo de volta</h1>
+        </div>
+        
+        <form action="" method="POST" id="login-form" class="flex column">
+            <div class="flex column">
+                <div>
+                    <label for="user-id">CPF</label>
+                    <span class="req-sign"> *</span>
+                </div>
+                <input type="text" name = "user-id" id="user-id" required>
+            </div>
+            
+            <div class="flex column">
+                <div>
+                    <label for="user-password">Senha</label>
+                    <span class="req-sign"> *</span>
+                </div>
+                <input type="password" name = "user-password" id="user-password" required>
+            </div>
+            
+            <div>
+                <button type="submit" id="login-bttn">Entrar</button>
+            </div>
+            
+            
         </form>
+
+        <div>
+            <div>Ainda não tem uma conta? 
+                <a href="{{ url_for('auth.register') }}">Cadastre-se</a>
+            </div>
+        </div>
+
     </div>
+
 {% endblock %}
