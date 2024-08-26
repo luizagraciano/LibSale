@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}A solução em PDV para sua livraria{% endblock %}
+{% block content %}
+<div class="home-container flex">
+    <div class="image-container flex-1">
+        <img src=" {{ url_for('static', filename='images/bookshop1.jpg') }} " alt="Estantes de livros em livraria" class="home-image flex">
+    </div>
+
+    <div class="home-content-container flex column flex-1">
+        <h1 class="home-content flex">LibSale é a solução em PDV ideal para a sua livraria</h1>
+
+        <form>
+            <button formaction=" {{ url_for('auth.login') }} ">Entrar</button>
+        </form>
+        
+        <form>
+            <button id="home-register-button" formaction=" {{ url_for('auth.register') }} ">Cadastre-se</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

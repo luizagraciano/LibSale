@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, render_template
 
 def create_app(test_config=None):
     # create and configure the app
@@ -30,4 +30,10 @@ def create_app(test_config=None):
     app.register_blueprint(dashboard.bp)
     app.register_blueprint(sale.bp)
 
+    @app.route('/')
+    def home():
+        return render_template('home.html')
+
     return app
+
+    
