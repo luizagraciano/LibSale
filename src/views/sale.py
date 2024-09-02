@@ -6,6 +6,6 @@ from src.data.db import get_db
 
 bp = Blueprint('sale', __name__, url_prefix='/sale')
 
-@bp.route('/', methods=('GET', 'POST'))
+@bp.route('/')
 def new_sale():
     return render_template('pos/sale.html')
