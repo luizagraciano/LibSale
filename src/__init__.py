@@ -25,9 +25,10 @@ def create_app(test_config=None):
     from .data import db
     db.init_app(app)
 
-    from .views import auth, dashboard, sale
+    from .views import auth, dashboard, sale, cash_register
     app.register_blueprint(auth.bp)
     app.register_blueprint(dashboard.bp)
+    app.register_blueprint(cash_register.bp)
     app.register_blueprint(sale.bp)
 
     @app.route('/')

@@ -286,7 +286,7 @@ a:active {
 }
 
 .dashboard-stats, .dashboard-search{
-    margin: 24px;
+    margin: 24px 24px 16px 24px;
     justify-content: left;
     text-align: left;
     gap: 12px;

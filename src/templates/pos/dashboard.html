@@ -16,7 +16,7 @@
                     point_of_sale
                     </span>
                 <div>Abrir caixa</div>
-                <a href=" {{ url_for('auth.logout') }} " class="card-link"></a>
+                <a href=" {{ url_for('cash_register.open') }} " class="card-link"></a>
             </div>
             <div class="row-col flex column dash-radius box-shadow" id="nova-venda">
                 <span class="material-symbols-outlined m-48">
@@ -30,7 +30,7 @@
                     enterprise_off
                     </span>
                 <div>Fechar caixa</div>
-                <a href=" {{ url_for('sale.new_sale') }} " class="card-link"></a>
+                <a href=" {{ url_for('cash_register.close') }} " class="card-link"></a>
             </div>
         </div>
 
@@ -70,6 +70,17 @@
     <div class="dashboard-col-right flex-1 flex column dash-radius">
             <div class="row row5 flex column dash-radius box-shadow">
                 <div class="dashboard-stats date">{{ date_time }}</div>
+
+                <div class="flex dashboard-stats">
+                    <span class="material-symbols-outlined m-36">
+                        store
+                    </span>
+
+                    <div class="flex column">
+                        <div name="sales-number">Aberto</div>
+                        <label for="sales-number">Status do caixa</label>
+                    </div>  
+                </div>
 
                 <div class="flex dashboard-stats">
                     <span class="material-symbols-outlined m-36">
