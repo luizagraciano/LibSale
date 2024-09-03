@@ -1,11 +1,12 @@
 DROP TABLE IF EXISTS seller;
 DROP TABLE IF EXISTS product;
 DROP TABLE IF EXISTS sale;
-DROP TABLE IF EXISTS order_item;
+DROP TABLE IF EXISTS sale_item;
 DROP TABLE IF EXISTS costumer;
+DROP TABLE IF EXISTS cash_register;
 
 CREATE TABLE seller (
-    id VARCHAR PRIMARY KEY,
+    id VARCHAR PRIMARY KEY NOT NULL,
     name TEXT NOT NULL,
     birthday DATE NOT NULL,
     phone_number INTEGER NOT NULL,
@@ -14,37 +15,51 @@ CREATE TABLE seller (
 );
 
 CREATE TABLE product (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    price DECIMAL(10,2),
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
     publisher TEXT NOT NULL,
     author TEXT NOT NULL,
-    genre TEXT NOT NULL
+    genre TEXT NOT NULL,
+    quantity INTEGER NOT NULL
 );
 
 CREATE TABLE sale (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    order_item_id INTEGER NOT NULL,
-    seller_id INTEGER NOT NULL,
-    costumer_id INTEGER NOT NULL,
-    order_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    price DECIMAL(10,2),
-    FOREIGN KEY (order_item_id) REFERENCES order_item (id),
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    seller_id VARCHAR NOT NULL,
+    costumer_id VARCHAR,
+    sale_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    sale_total_price DECIMAL(10,2) NOT NULL,
+    itens_quantity INTEGER NOT NULL,
     FOREIGN KEY (seller_id) REFERENCES seller (id),
     FOREIGN KEY (costumer_id) REFERENCES costumer (id)
 );
 
-CREATE TABLE order_item (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+CREATE TABLE sale_item (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     product_id INTEGER NOT NULL,
-    order_id INTEGER NOT NULL,
+    product_price DECIMAL(10,2) NOT NULL,
+    quantity INTEGER NOT NULL,
+    subtotal DECIMAL(10,2) NOT NULL,
+    sale_id INTEGER NOT NULL,
     FOREIGN KEY (product_id) REFERENCES product (id),
-    FOREIGN KEY (order_id) REFERENCES sale (id)
+    FOREIGN KEY (product_price) REFERENCES product (price),
+    FOREIGN KEY (sale_id) REFERENCES sale (id)
 );
 
 CREATE TABLE costumer (
-    id VARCHAR PRIMARY KEY,
+    id VARCHAR PRIMARY KEY NOT NULL,
     name TEXT NOT NULL,
-    birthday DATE NOT NULL,
-    phone_number INTEGER NOT NULL,
-    email TEXT NOT NULL
+    birthday DATE,
+    phone_number INTEGER,
+    email TEXT
 );
+
+CREATE TABLE cash_register (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    status TEXT NOT NULL,
+    revenue DECIMAL(10,2) NOT NULL,
+    expense DECIMAL(10,2) NOT NULL,
+    sales_number INTEGER NOT NULL,
+    products_sold INTEGER NOT NULL,
+    sales_income DECIMAL(10,2) NOT NULL
+)
