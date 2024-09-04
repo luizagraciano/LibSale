@@ -57,12 +57,14 @@ CREATE TABLE costumer (
 CREATE TABLE cash_register (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     seller_id VARCHAR NOT NULL,
-    status TEXT NOT NULL,
-    cash_fund DECIMAL(10,2) NOT NULL,
-    revenue DECIMAL(10,2) NOT NULL,
-    expenses DECIMAL(10,2) NOT NULL,
-    sales_number INTEGER NOT NULL,
-    products_sold INTEGER NOT NULL,
-    sales_income DECIMAL(10,2) NOT NULL,
+    status TEXT NOT NULL DEFAULT 'Fechado',
+    cash_fund DECIMAL(10,2) NOT NULL DEFAULT 0,
+    revenue DECIMAL(10,2) NOT NULL DEFAULT 0,
+    revenue_declared DECIMAL(10,2) NOT NULL DEFAULT 0,
+    expenses DECIMAL(10,2) NOT NULL DEFAULT 0,
+    expenses_declared DECIMAL(10,2) NOT NULL DEFAULT 0,
+    sales_number INTEGER NOT NULL DEFAULT 0,
+    products_sold INTEGER NOT NULL DEFAULT 0,
+    sales_income DECIMAL(10,2) NOT NULL DEFAULT 0,
     FOREIGN KEY (seller_id) REFERENCES seller (id)
 )
