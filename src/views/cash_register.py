@@ -29,27 +29,34 @@ def open():
                 db.commit()
             except db.IntegrityError:
                 error = f"Caixa já aberto"
-        else:
-            return redirect(url_for('dashboard.welcome'))
+            else:
+                return redirect(url_for('dashboard.welcome'))
 
     return render_template('pos/open.html')
 
-'''@bp.route('/close', methods=('GET', 'POST'))
+@bp.route('/close', methods=('GET', 'POST'))
 def close():
+    db = get_db()
+    cash = db.execute(
+            'SELECT * FROM cash_register WHERE id = (SELECT MAX(id) FROM cash_register)'
+        ).fetchone()
+    
     if request.method == "POST":
         status = "Fechado"
-        revenue = request.form['revenue']
-        expenses = request.form['expenses']
-        db = get_db()
+        revenue_declared = request.form['revenue']
+        expenses_declared = request.form['expenses']
         error = None
 
         if error is None:
             try:
                 db.execute(
-                    "UPDATE cash_register SET status = ?, revenue",
+                    "UPDATE cash_register SET status = ?, revenue_declared = ?, expenses_declared = ? WHERE id = (SELECT MAX(id) FROM cash_register)",
+                    (status, revenue_declared, expenses_declared),
                 )
+                db.commit()
             except db.IntegrityError:
                 error = f"Caixa já fechado"
-        else:
-            return redirect(url_for('dashboard.welcome'))
-    return render_template('pos/close.html')'''
+            else:
+                return redirect(url_for('dashboard.welcome'))
+            
+    return render_template('pos/close.html', cash=cash)

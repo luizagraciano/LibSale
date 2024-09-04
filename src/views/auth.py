@@ -28,8 +28,8 @@ def register():
                 db.commit()
             except db.IntegrityError:
                 error = f"Usuário já cadastrado"
-        else:
-            return redirect(url_for('auth.login'))
+            else:
+                return redirect(url_for('auth.login'))
 
         flash(error)
 

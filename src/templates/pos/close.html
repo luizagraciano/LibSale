@@ -8,14 +8,12 @@
 
     <form action="" method="POST" id="open-cash-register" class="flex column">
         <div class="flex column">
-            <label for="cash-fund">Entradas</label>
-            <div>R$ {{cash['revenue']}}</div>
+            <label for="cash-fund">Entradas: R${{cash['revenue']}}</label>
             <input type="text" name="revenue" id="revenue">
         </div>
 
         <div class="flex column">
-            <label for="cash-fund">Saídas</label>
-            <div>R$ {{cash['expenses']}}</div>
+            <label for="cash-fund">Saídas: R${{cash['expenses']}}</label>
             <input type="text" name="expenses" id="expenses">
         </div>
 
