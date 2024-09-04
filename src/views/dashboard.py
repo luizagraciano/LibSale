@@ -13,5 +13,11 @@ def welcome():
     if 'user_id' in session:
         now = datetime.now()
         date_time = now.strftime("%d/%m/%Y")
-        return render_template('pos/dashboard.html', date_time=date_time)
+
+        db = get_db()
+        cash = db.execute(
+            'SELECT * FROM cash_register WHERE id = (SELECT MAX(id) FROM cash_register)'
+        ).fetchone()
+        
+        return render_template('pos/dashboard.html', date_time=date_time, cash=cash)
     return redirect(url_for('auth.login'))

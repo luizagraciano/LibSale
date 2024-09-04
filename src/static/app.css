@@ -308,3 +308,17 @@ a:active {
     font-weight: 800;
     color: #8C5332;
 }
+
+.cash-register-container{
+    height: 300px;
+    width: 500px;
+    margin: auto;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    background-color:#ffffff;
+    border-radius: 20px;
+    font-size: 12px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, .2);
+}

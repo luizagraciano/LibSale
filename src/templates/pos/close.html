@@ -1,5 +1,26 @@
 {% extends 'base.html' %}
 {% block title %}Nova venda{% endblock %}
 {% block content %}
+<div class="cash-register-container column flex">
+    <div class="title">
+        <h1>Fechamento de caixa</h1>
+    </div>
 
+    <form action="" method="POST" id="open-cash-register" class="flex column">
+        <div class="flex column">
+            <label for="cash-fund">Entradas</label>
+            <div>R$ {{cash['revenue']}}</div>
+            <input type="text" name="revenue" id="revenue">
+        </div>
+
+        <div class="flex column">
+            <label for="cash-fund">Saídas</label>
+            <div>R$ {{cash['expenses']}}</div>
+            <input type="text" name="expenses" id="expenses">
+        </div>
+
+        <button type="submit">Fechar caixa</button>
+    </form>
+
+</div>
 {% endblock %}
