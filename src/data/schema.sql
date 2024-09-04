@@ -57,7 +57,7 @@ CREATE TABLE costumer (
 CREATE TABLE cash_register (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     seller_id VARCHAR NOT NULL,
-    cash_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    cash_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     status TEXT NOT NULL DEFAULT 'Fechado',
     cash_fund DECIMAL(10,2) NOT NULL DEFAULT 0,
     revenue DECIMAL(10,2) NOT NULL DEFAULT 0,
@@ -66,6 +66,5 @@ CREATE TABLE cash_register (
     expenses_declared DECIMAL(10,2) NOT NULL DEFAULT 0,
     sales_number INTEGER NOT NULL DEFAULT 0,
     products_sold INTEGER NOT NULL DEFAULT 0,
-    sales_income DECIMAL(10,2) NOT NULL DEFAULT 0,
     FOREIGN KEY (seller_id) REFERENCES seller (id)
 )

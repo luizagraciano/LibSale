@@ -15,11 +15,15 @@ def welcome():
         date_time = now.strftime("%d/%m/%Y")
 
         db = get_db()
-        cash = db.execute(
-            'SELECT * FROM cash_register WHERE date_time = ?', (date_time)
-        ).fetchall()
 
+        current_cash = db.execute(
+            'SELECT * FROM cash_register WHERE id = (SELECT MAX(id) FROM cash_register)'
+        ).fetchone()
 
+        daily_cash = db.execute(
+            'SELECT SUM(revenue), SUM(sales_number), SUM(products_sold) FROM cash_register WHERE DATE(cash_date) = CURRENT_DATE'
+        ).fetchone()
         
-        return render_template('pos/dashboard.html', date_time=date_time, cash=cash)
-    return redirect(url_for('auth.login'))  
+        return render_template('pos/dashboard.html', date_time=date_time, current_cash=current_cash, daily_cash=daily_cash)
+
+    return redirect(url_for('auth.login'))
