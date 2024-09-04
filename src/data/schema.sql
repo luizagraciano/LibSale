@@ -28,8 +28,8 @@ CREATE TABLE sale (
     seller_id VARCHAR NOT NULL,
     costumer_id VARCHAR,
     sale_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    sale_total_price DECIMAL(10,2) NOT NULL,
-    itens_quantity INTEGER NOT NULL,
+    sale_total_price DECIMAL(10,2) NOT NULL DEFAULT 0,
+    itens_quantity INTEGER NOT NULL DEFAULT 0,
     FOREIGN KEY (seller_id) REFERENCES seller (id),
     FOREIGN KEY (costumer_id) REFERENCES costumer (id)
 );
