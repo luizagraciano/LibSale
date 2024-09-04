@@ -12,19 +12,14 @@ def open():
         seller_id = session['user_name']
         status = "Aberto"
         cash_fund = request.form['cash-fund']
-        revenue = 0
-        expenses = 0
-        sales_number = 0
-        products_sold = 0
-        sales_income = 0
         db = get_db()
         error = None
 
         if error is None:
             try:
                 db.execute(
-                    "INSERT INTO cash_register (seller_id, status, cash_fund, revenue, expenses, sales_number, products_sold, sales_income) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                    (seller_id, status, cash_fund, revenue, expenses, sales_number, products_sold, sales_income),
+                    "INSERT INTO cash_register (seller_id, status, cash_fund) VALUES (?, ?, ?)",
+                    (seller_id, status, cash_fund),
                 )
                 db.commit()
             except db.IntegrityError:
