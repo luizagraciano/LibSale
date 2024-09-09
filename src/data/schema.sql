@@ -16,6 +16,7 @@ CREATE TABLE seller (
 
 CREATE TABLE product (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    name VARCHAR(100) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
     publisher TEXT NOT NULL,
     author TEXT NOT NULL,

@@ -2,20 +2,30 @@
 {% block title %}Nova venda{% endblock %}
 {% block content %}
 
-<div class="sales-container flex">
+<div class="sales-container flex column">
         <div class="sale-search flex column">
             <div class="flex ">
                 <span class="material-symbols-outlined" style="margin-right: 10px">
-                    quick_reference_all
+                    library_add
                 </span>
                 <div>Adicionar produto</div>
             </div>
 
             <form method="POST" name="product-add">
-                <input type="text" class="sale-search-input">
-                <button type="submit" class="search-button">Adicionar</button>
+                <input type="text" class="sale-add-input">
+                <button type="submit" class="add-button">Adicionar</button>
             </form>
 
+        </div>
+
+        <div class="sale-list flex border">
+            {% for sale_item in sale_itens %}
+                <div class="sale-itens flex column">
+                    <div>
+                        
+                    </div>
+                </div>
+            {% endfor %}
         </div>
 </div>
 

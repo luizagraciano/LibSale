@@ -6,7 +6,7 @@ from src.data.db import get_db
 
 bp = Blueprint('sale', __name__, url_prefix='/sale')
 
-@bp.route('/')
+@bp.route('/new')
 def new_sale():
 
     db = get_db()
@@ -24,8 +24,23 @@ def new_sale():
         )
         db.commit()
 
-        return render_template('pos/sale.html')
+        sale = db.execute(
+            'SELECT * FROM sale WHERE id = (SELECT MAX(id) FROM sale)'
+        ).fetchone()
+
+        id = sale['id']
+
+        return redirect(url_for('sale.update_sale', id = id))
     else:
         return redirect(url_for('dashboard.welcome'))
     
 
+@bp.route('/<int:id>/')
+def update_sale(id):
+
+    db = get_db()
+    sale_itens = db.execute(
+        'SELECT * from sale_item WHERE sale_id = (SELECT MAX(id) FROM sale) ORDER BY id DESC'
+    ).fetchall()
+
+    return render_template('pos/sale.html', sale_itens = sale_itens)
