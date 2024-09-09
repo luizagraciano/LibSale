@@ -68,6 +68,10 @@ input{
     width: 400px;
 }
 
+.sale-search-input{
+    width: 500px;
+}
+
 label{
     font-size: 12px;
 }
@@ -147,7 +151,7 @@ a:active {
     height: 400px;
 }
 
-.home-container{
+.home-container, .sales-container{
     height: 600px;
     width: 900px;
     margin: auto;
@@ -196,7 +200,6 @@ a:active {
 .dashboard-container{
     height: 600px;
     width: 900px;
-    padding: 1em;
     display: flex;
     gap: 1em;
 }
@@ -285,7 +288,7 @@ a:active {
     color: #ffffff;
 }
 
-.dashboard-stats, .dashboard-search{
+.dashboard-stats, .dashboard-search, .sale-search{
     margin: 24px 24px 16px 24px;
     justify-content: left;
     text-align: left;

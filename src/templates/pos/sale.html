@@ -3,7 +3,20 @@
 {% block content %}
 
 <div class="sales-container flex">
-    
+        <div class="sale-search flex column">
+            <div class="flex ">
+                <span class="material-symbols-outlined" style="margin-right: 10px">
+                    quick_reference_all
+                </span>
+                <div>Adicionar produto</div>
+            </div>
+
+            <form method="POST" name="product-add">
+                <input type="text" class="sale-search-input">
+                <button type="submit" class="search-button">Adicionar</button>
+            </form>
+
+        </div>
 </div>
 
 {% endblock %}
