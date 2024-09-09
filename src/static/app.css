@@ -333,3 +333,7 @@ a:active {
     border-radius: 15px;
 
 }
+
+.sale-itens{
+    justify-content: space-between;
+}

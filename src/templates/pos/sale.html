@@ -11,19 +11,19 @@
                 <div>Adicionar produto</div>
             </div>
 
-            <form method="POST" name="product-add">
-                <input type="text" class="sale-add-input">
+            <form action="" method="POST" name="product-add">
+                <input type="text" class="sale-add-input" name="product-id">
                 <button type="submit" class="add-button">Adicionar</button>
             </form>
 
         </div>
 
-        <div class="sale-list flex border">
-            {% for sale_item in sale_itens %}
-                <div class="sale-itens flex column">
-                    <div>
-                        
-                    </div>
+        <div class="sale-list flex column border">
+            {% for item in sale_itens %}
+                <div class="sale-itens flex">
+                    <div>{{item['name']}}</div>
+                    <div>{{item['price']}}</div>
+                    <div>{{item['author']}}</div>
                 </div>
             {% endfor %}
         </div>
