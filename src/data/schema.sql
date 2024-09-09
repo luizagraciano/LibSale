@@ -26,7 +26,7 @@ CREATE TABLE product (
 CREATE TABLE sale (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     seller_id VARCHAR NOT NULL,
-    costumer_id VARCHAR,
+    costumer_id VARCHAR DEFAULT 'Sem cliente cadastrado',
     sale_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     sale_total_price DECIMAL(10,2) NOT NULL DEFAULT 0,
     itens_quantity INTEGER NOT NULL DEFAULT 0,
