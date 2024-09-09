@@ -30,6 +30,9 @@ CREATE TABLE sale (
     sale_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     sale_total_price DECIMAL(10,2) NOT NULL DEFAULT 0,
     itens_quantity INTEGER NOT NULL DEFAULT 0,
+    status TEXT NOT NULL DEFAULT 'Não concluída',
+    payment_method VARCHAR(50) NOT NULL DEFAULT 'Nenhum',
+    change DECIMAL(10,2) DEFAULT 0,
     FOREIGN KEY (seller_id) REFERENCES seller (id),
     FOREIGN KEY (costumer_id) REFERENCES costumer (id)
 );
