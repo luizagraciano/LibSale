@@ -47,7 +47,7 @@ def new_sale():
 
     if status == 'Aberto':
         db.execute(
-            'INSERT INTO sale (seller_id) VALUES(?)', (seller,)
+            'INSERT INTO sale (seller_id, cash_register_id) VALUES(?, ?)', (seller, current_cash['id'])
         )
         db.commit()
 
@@ -97,7 +97,7 @@ def checkout(id):
         )
         db.commit()
 
-        return redirect(url_for('dashboard.welcome'))
+        return redirect(url_for('cash_register.update'))
 
     db = get_db()
     sale_itens = db.execute(

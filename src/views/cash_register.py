@@ -3,6 +3,7 @@ from flask import (
 )
 
 from src.data.db import get_db
+from src.views.sale import get_last_sale
 
 bp = Blueprint('cash_register', __name__, url_prefix='/cash_register')
 
@@ -55,3 +56,15 @@ def close():
                 return redirect(url_for('dashboard.welcome'))
             
     return render_template('pos/close.html', cash=cash)
+
+@bp.route('/update')
+def update():
+    sale = get_last_sale()
+    db = get_db()
+    db.execute(
+        'UPDATE cash_register SET revenue = (revenue + ?), sales_number = sales_number + 1, products_sold = (products_sold + ?) WHERE id = (SELECT MAX(id) FROM cash_register)',
+        (sale['sale_total_price'], sale['itens_quantity'])
+    )
+    db.commit()
+    
+    return redirect(url_for('dashboard.welcome'))
