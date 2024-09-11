@@ -10,9 +10,6 @@ bp = Blueprint('cash_register', __name__, url_prefix='/cash_register')
 @bp.route('/open', methods=('GET', 'POST'))
 def open():
     db = get_db()
-    cash = db.execute(
-            'SELECT * FROM cash_register WHERE id = (SELECT MAX(id) FROM cash_register)'
-        ).fetchone()
 
     if request.method == "POST":
         seller_id = session['user_id']
@@ -32,18 +29,22 @@ def open():
             else:
                 return redirect(url_for('dashboard.welcome'))
 
-    if cash['status'] == 'Fechado':
+    try:
+        cash = db.execute(
+            'SELECT * FROM cash_register WHERE id = (SELECT MAX(id) FROM cash_register)'
+        ).fetchone()
+
+        if cash['status'] == 'Fechado':
+            return render_template('pos/open.html')
+        else:
+            return redirect(url_for('dashboard.welcome'))
+    except TypeError:
         return render_template('pos/open.html')
-    else:
-        return redirect(url_for('dashboard.welcome'))
     
 
 @bp.route('/close', methods=('GET', 'POST'))
 def close():
     db = get_db()
-    cash = db.execute(
-            'SELECT * FROM cash_register WHERE id = (SELECT MAX(id) FROM cash_register)'
-        ).fetchone()
     
     if request.method == "POST":
         status = "Fechado"
@@ -63,10 +64,17 @@ def close():
             else:
                 return redirect(url_for('dashboard.welcome'))
 
-    if cash['status'] == 'Aberto':
+    try:
+        cash = db.execute(
+            'SELECT * FROM cash_register WHERE id = (SELECT MAX(id) FROM cash_register)'
+        ).fetchone()
+
+        if cash['status'] == 'Aberto':
+            return render_template('pos/close.html', cash=cash)
+        else:
+            return redirect(url_for('dashboard.welcome'))
+    except TypeError:
         return render_template('pos/close.html', cash=cash)
-    else:
-        return redirect(url_for('dashboard.welcome'))
 
 @bp.route('/update')
 def update():
