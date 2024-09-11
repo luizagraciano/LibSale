@@ -9,11 +9,15 @@ bp = Blueprint('cash_register', __name__, url_prefix='/cash_register')
 
 @bp.route('/open', methods=('GET', 'POST'))
 def open():
+    db = get_db()
+    cash = db.execute(
+            'SELECT * FROM cash_register WHERE id = (SELECT MAX(id) FROM cash_register)'
+        ).fetchone()
+
     if request.method == "POST":
-        seller_id = session['user_name']
+        seller_id = session['user_id']
         status = "Aberto"
         cash_fund = request.form['cash-fund']
-        db = get_db()
         error = None
 
         if error is None:
@@ -28,7 +32,11 @@ def open():
             else:
                 return redirect(url_for('dashboard.welcome'))
 
-    return render_template('pos/open.html')
+    if cash['status'] == 'Fechado':
+        return render_template('pos/open.html')
+    else:
+        return redirect(url_for('dashboard.welcome'))
+    
 
 @bp.route('/close', methods=('GET', 'POST'))
 def close():
@@ -54,8 +62,11 @@ def close():
                 error = f"Caixa já fechado"
             else:
                 return redirect(url_for('dashboard.welcome'))
-            
-    return render_template('pos/close.html', cash=cash)
+
+    if cash['status'] == 'Aberto':
+        return render_template('pos/close.html', cash=cash)
+    else:
+        return redirect(url_for('dashboard.welcome'))
 
 @bp.route('/update')
 def update():
