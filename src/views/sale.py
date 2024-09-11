@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
@@ -61,7 +62,11 @@ def new_sale():
 @bp.route('/<int:id>/', methods=('GET', 'POST'))
 def checkout(id):
 
-    if request.method == 'POST':
+    now = datetime.now()
+    date_time = now.strftime("%d/%m/%Y")
+    sale = get_last_sale()
+
+    if request.method == 'POST' and 'submit-add' in request.form:
         product_id = request.form['product-id']
 
         product = get_product(product_id)
@@ -73,24 +78,57 @@ def checkout(id):
         )
         db.commit()
         
-        return redirect(url_for('sale.checkout', id = id))
+        return redirect(url_for('sale.update_sale', id = id))
+    
+
+    if request.method == 'POST' and 'submit-checkout' in request.form:
+        payment_method = request.form['payment-method']
+        costumer = request.form['costumer']
+
+        db = get_db()
+        db.execute(
+            'UPDATE sale SET payment_method = ?, status = ? WHERE id = ?', (payment_method, 'Concluída', id)
+        )
+        db.commit()
+
+        if costumer != '':
+            db.execute(
+            'UPDATE sale SET costumer_id = ? WHERE id = ?', (costumer, id)
+        )
+        db.commit()
+
+        return redirect(url_for('dashboard.welcome'))
 
     db = get_db()
     sale_itens = db.execute(
         'SELECT p.name, p.author, si.id, si.product_id, p.price, si.quantity, si.subtotal FROM sale_item si JOIN product p ON p.id = si.product_id WHERE si.sale_id = ? ORDER BY si.id DESC', (id,)
     ).fetchall()
 
-    sale = get_last_sale()
 
-    return render_template('pos/sale.html', sale_itens = sale_itens, sale = sale)
+    return render_template('pos/sale.html', sale_itens = sale_itens, sale = sale, date_time = date_time)
 
-'''@bp.route('/<int:id>/update')
+
+@bp.route('/<int:id>/update')
 def update_sale(id):
     db = get_db()
-    db.execute(
-        ''
-    )'''
 
+    try:
+        sale = db.execute(
+            'SELECT SUM(quantity) AS quantity, SUM(subtotal) AS total FROM sale_item JOIN sale ON sale_item.sale_id = sale.id WHERE sale_id = (SELECT max(id) from sale)'
+        ).fetchone()
+
+        db.execute(
+            'UPDATE sale SET itens_quantity = ?, sale_total_price = ? WHERE id = ?', (sale['quantity'], sale['total'], id)
+        )
+        db.commit()
+
+    except db.IntegrityError:
+        db.execute(
+            'UPDATE sale SET itens_quantity = 0, sale_total_price = 0 WHERE id = ?', (id,)
+        )
+        db.commit()
+
+    return redirect(url_for('sale.checkout', id = id))
 
 
 @bp.route('/<int:id>/plus')
@@ -111,7 +149,7 @@ def plus_item(id):
     last_sale = get_last_sale()
     id = last_sale['id']
 
-    return redirect(url_for('sale.checkout', id = id))
+    return redirect(url_for('sale.update_sale', id = id))
 
 
 @bp.route('/<int:id>/minus')
@@ -132,7 +170,7 @@ def minus_item(id):
     last_sale = get_last_sale()
     id = last_sale['id']
 
-    return redirect(url_for('sale.checkout', id = id))
+    return redirect(url_for('sale.update_sale', id = id))
 
 
 @bp.route('/<int:id>/delete')
@@ -148,6 +186,6 @@ def delete_item(id):
     last_sale = get_last_sale()
     id = last_sale['id']
 
-    return redirect(url_for('sale.checkout', id = id))
+    return redirect(url_for('sale.update_sale', id = id))
 
 

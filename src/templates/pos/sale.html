@@ -2,7 +2,12 @@
 {% block title %}Nova venda{% endblock %}
 {% block content %}
 
-<div class="sales-container flex column">
+    <div class="sales-container flex column">
+        <div class="sale-header flex">
+            <div>Venda #{{sale['id']}}</div>
+            <div>Vendedor: {{session['user_name']}}</div>
+        </div>
+
         <div class="sale-search flex column">
             <div class="flex ">
                 <span class="material-symbols-outlined" style="margin-right: 10px">
@@ -11,9 +16,9 @@
                 <div>Adicionar produto</div>
             </div>
 
-            <form action="" method="POST" name="product-add">
-                <input type="text" class="sale-add-input" name="product-id">
-                <button type="submit" class="add-button">Adicionar</button>
+            <form action="" method="POST" name="product-add" id="product-add">
+                <input type="text" class="sale-add-input" name="product-id" required>
+                <button type="submit" class="add-button" name="submit-add">Adicionar</button>
             </form>
 
         </div>
@@ -26,7 +31,7 @@
                     <div class="item-info flex" style="flex: 8">
                         <div class="item-name" style="flex: 6">{{item['name']}}</div>
                         <div class="item-author" style="flex: 3">{{item['author']}}</div>
-                        <div class="item-price" style="flex: 1">{{item['subtotal']}}</div>
+                        <div class="item-price" style="flex: 1">R$ {{item['subtotal']}}</div>
                     </div>
                     
 
@@ -64,6 +69,11 @@
         <div class="bottom-container flex">
             <div class="summary flex column">
                 <div class="summary-title"">Resumo</div>
+                <div class="sale-date flex">
+                    <div>Data</div>
+                    <div>{{ date_time }}</div>
+                </div>
+
                 <div class="quantity flex">
                     <div>Itens</div>
                     <div>{{ sale['itens_quantity']}}</div>
@@ -75,10 +85,38 @@
                 </div>
             </div>
 
-            <div>
+            <form action="" method="POST" class="checkout-form flex" id="checkout-form">
+                <div class="flex column">
+                    <div class="payment-title">Método de pagamento</div>
+                    <div class="flex">
+                        <input type="radio" name="payment-method" id="cash" value="Dinheiro" checked>
+                        <label for="cash">Dinheiro</label>
+                    </div>
 
-            </div>
+                    <div class="flex">
+                        <input type="radio" name="payment-method" id="pix" value="Pix">
+                        <label for="pix">Pix</label>
+                    </div>
+
+                    <div class="flex">
+                        <input type="radio" name="payment-method" id="debit-card" value="Débito">
+                        <label for="debit-card">Débito</label>
+                    </div>
+
+                    <div class="flex">
+                        <input type="radio" name="payment-method" id="credit-card" value="Crédito">
+                        <label for="credit-card">Crédito</label>
+                    </div>
+                </div>
+
+                <div class="flex column">
+                    <div class="payment-title">Inserir cliente</div>
+                    <input type="text" name="costumer" id="costumer">
+                    <button type="submit" name="submit-checkout">Finalizar</button>
+                </div>
+                
+            </form>
         </div>
-</div>
+    </div>
 
 {% endblock %}

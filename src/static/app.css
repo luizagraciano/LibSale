@@ -68,6 +68,13 @@ input{
     margin-bottom: 12px;
 }
 
+input[type=radio] {
+    border: 0px;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+
 .dashboard-search-input{
     width: 400px;
 }
@@ -333,10 +340,19 @@ a:active {
 .sale-list{
     flex: 3;
     width: 800px;
-    margin: 20px;
+    margin: 0px 20px 20px 20px;
     border-radius: 15px;
     padding: 15px;
     overflow-y: scroll;
+}
+
+.sale-list::-webkit-scrollbar {
+    margin: 10px;
+}
+
+.sale-list::-webkit-scrollbar-thumb {
+    border-radius: 15px;
+    background-color: #4A5934;
 }
 
 .sale-itens{
@@ -354,18 +370,35 @@ a:active {
 }
 
 .bottom-container{
-    flex: 1;
+    flex: 1.5;
+    justify-content: space-between;
     width: 800px;
-    align-items: end;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
-.quantity, .total{
+.quantity, .total, .sale-date{
     gap: 30px;
 }
+.summary{
+    flex:1;
+}
 
-.summary-title{
+.summary-title, .payment-title{
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 10px;
+}
+
+.sale-header{
+    width: 800px;
+    justify-content: space-between;
+    margin: 30px;
+    margin-bottom: 0px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.checkout-form{
+    flex: 2;
+    justify-content: space-between;
 }
