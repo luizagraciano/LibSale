@@ -19,13 +19,65 @@
         </div>
 
         <div class="sale-list flex column border">
+
             {% for item in sale_itens %}
+
                 <div class="sale-itens flex">
-                    <div>{{item['name']}}</div>
-                    <div>{{item['price']}}</div>
-                    <div>{{item['author']}}</div>
+                    <div class="item-info flex" style="flex: 8">
+                        <div class="item-name" style="flex: 6">{{item['name']}}</div>
+                        <div class="item-author" style="flex: 3">{{item['author']}}</div>
+                        <div class="item-price" style="flex: 1">{{item['subtotal']}}</div>
+                    </div>
+                    
+
+                    <div class="item-quantity flex" style="flex: 1.5">
+                        <div class="alter-quantity">
+                            <span class="material-symbols-outlined m-16">
+                                remove
+                            </span>
+                            <a href="{{ url_for('sale.minus_item', id = item['id']) }}" class="sale-icon"></a>
+                        </div>
+                        
+                        <div>{{item['quantity']}}</div>
+
+                        <div class="alter-quantity">
+                            <span class="material-symbols-outlined m-16">
+                                add
+                            </span>
+                            <a href="{{ url_for('sale.plus_item', id = item['id']) }}" class="sale-icon"></a>
+                        </div>
+                    </div>
+
+                    <div class="item-delete flex" style="flex: 0.5">
+                        <span class="material-symbols-outlined m-16">
+                            delete
+                        </span>
+                        <a href="{{ url_for('sale.delete_item', id = item['id']) }}" class="sale-icon"></a>
+                    </div>
+                    
                 </div>
+
             {% endfor %}
+
+        </div>
+
+        <div class="bottom-container flex">
+            <div class="summary flex column">
+                <div class="summary-title"">Resumo</div>
+                <div class="quantity flex">
+                    <div>Itens</div>
+                    <div>{{ sale['itens_quantity']}}</div>
+                </div>
+
+                <div class="total flex">
+                    <div>Total</div>
+                    <div>R$ {{ sale['sale_total_price']}}</div>
+                </div>
+            </div>
+
+            <div>
+
+            </div>
         </div>
 </div>
 
