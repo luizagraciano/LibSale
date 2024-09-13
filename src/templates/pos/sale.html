@@ -4,7 +4,12 @@
 
     <div class="sales-container flex column">
         <div class="sale-header flex">
-            <div>Venda #{{sale['id']}}</div>
+            <div class="flex" style="gap: 15px; align-items: center;">
+                <div>Venda #{{sale['id']}}</div>
+                <form>
+                    <button formaction=" {{ url_for('sale.cancel_sale', id = sale['id']) }} " class="cancel-sale-button">Cancelar</button>
+                </form>   
+            </div>
             <div>Vendedor: {{session['user_name']}}</div>
         </div>
 

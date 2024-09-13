@@ -130,6 +130,17 @@ def update_sale(id):
 
     return redirect(url_for('sale.checkout', id = id))
 
+@bp.route('/<int:id>/cancel')
+def cancel_sale(id):
+    db = get_db()
+
+    db.execute(
+        'DELETE FROM sale WHERE id = ?', (id,)
+    )
+    db.commit()
+
+    return redirect(url_for('dashboard.welcome'))
+
 
 @bp.route('/<int:id>/plus')
 def plus_item(id):

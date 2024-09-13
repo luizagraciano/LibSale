@@ -101,7 +101,7 @@ button{
     font-size: 14px;
 }
 
-.search-button, .add-button{
+.search-button, .add-button, .cancel-sale-button{
     width: 100px;
     margin-bottom: 10px;
 }
@@ -202,7 +202,7 @@ a:active {
     margin: 30px;
 }
 
-#home-register-button{
+#home-register-button, .cancel-sale-button{
     color: #3C4022;
     background-color: #ffffff;
     border: 2px solid #3C4022;
@@ -392,10 +392,15 @@ a:active {
 .sale-header{
     width: 800px;
     justify-content: space-between;
+    align-items: center;
     margin: 30px;
     margin-bottom: 0px;
     font-size: 16px;
     font-weight: 600;
+}
+
+.cancel-sale-button{
+    margin: 0;
 }
 
 .checkout-form{
