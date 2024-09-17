@@ -24,7 +24,7 @@ O projeto "LibSale: Sistema de Ponto de Venda" foi desenvolvido para atender às
 
 2. Instale as dependências através do arquivo **requirements.txt**
    ```bash
-   $ pip install requirements.txt
+   $ pip install -r requirements.txt
    ```
 
 4. Incialize o banco de dados
